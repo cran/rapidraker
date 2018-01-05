@@ -1,0 +1,12 @@
+59e9769db087fd67ebe14783afed2bba *DESCRIPTION
+a7b4655b8efcdff9bf08a72e9b417b08 *LICENSE
+71e90d1fc183bbdb0ea549321833b5a3 *NAMESPACE
+74d3f8e57ca6d5c7af3c8bd0dbb2891a *R/on-load.R
+79356b706d08aa8500042619f0ed5448 *R/rapidrake.R
+6bcff12f7e5fbab92932552ac22d4c62 *README.md
+e91537225ffce6c1212d5d9966fab135 *inst/java/opennlp-tools-1.8.1.jar
+9182fc380c3056a49f1dbbe458528afa *inst/java/rapidrake-0.1.0.jar
+da86f3e1d055593625c0bb981bb566a0 *java/README.md
+ed0567f2ea876eb8425b06bb9c0b4fe7 *man/rapidrake.Rd
+486aa31f0f0be0c567cd7c18e0b5770c *tests/testthat.R
+39fc1f80d814f3952a9dda0c3864dbee *tests/testthat/test-rapidrake.R
