@@ -4,9 +4,14 @@
 \alias{rapidrake}
 \title{Rapid RAKE}
 \usage{
-rapidrake(txt, stop_words = slowraker::smart_words, stop_pos = c("VB",
-  "VBD", "VBG", "VBN", "VBP", "VBZ"), word_min_char = 3, stem = TRUE,
-  phrase_delims = "[-,.?():;\\"!/]")
+rapidrake(
+  txt,
+  stop_words = slowraker::smart_words,
+  stop_pos = c("VB", "VBD", "VBG", "VBN", "VBP", "VBZ"),
+  word_min_char = 3,
+  stem = TRUE,
+  phrase_delims = "[-,.?():;\\"!/]"
+)
 }
 \arguments{
 \item{txt}{A character vector, where each element of the vector contains the
@@ -21,7 +26,7 @@ words (equivalent to
 \item{stop_pos}{All words that have a part-of-speech (POS) that appears in
 \code{stop_pos} will be considered a stop word. \code{stop_pos} should be a
 vector of POS tags. All possible POS tags along with their definitions are
-in the \code{\link{pos_tags}} data frame (\code{View(slowraker::pos_tags)}).
+in the \code{\link[slowraker]{pos_tags}} data frame (\code{View(slowraker::pos_tags)}).
 The default value is to remove all words that have a verb-based
 POS (i.e., \code{stop_pos = c("VB", "VBD", "VBG", "VBN", "VBP", "VBZ")}).
 Set \code{stop_pos = NULL} if you don't want a word's POS to matter during
@@ -39,6 +44,23 @@ its stem when choosing \code{word_min_char}.}
 \item{phrase_delims}{A regular expression containing the characters that
 will be used as phrase delimiters}
 }
+\value{
+An object of class \code{rakelist}, which is just a list of data
+  frames (one data frame for each element of \code{txt}). Each data frame
+  will have the following columns:
+  \describe{
+    \item{keyword}{A keyword that was identified by RAKE.}
+    \item{freq}{The number of times the keyword appears in the document.}
+    \item{score}{The keyword's score, as per the RAKE algorithm. Keywords
+    with higher scores are considered to be higher quality than those with
+    lower scores.}
+    \item{stem}{If you specified \code{stem = TRUE}, you will get the
+    stemmed versions of the keywords in this column. When you choose stemming,
+    the keyword's score (\code{score}) will be based off its stem,
+    but the reported number of times that the keyword appears (\code{freq})
+    will still be based off of the raw, unstemmed version of the keyword.}
+  }
+}
 \description{
 A relatively fast version of the Rapid Automatic Keyword Extraction (RAKE)
 algorithm. See \href{http://media.wiley.com/product_data/excerpt/22/04707498/0470749822.pdf}{
@@ -46,5 +68,8 @@ Automatic keyword extraction from individual documents} for details on how
 RAKE works.
 }
 \examples{
-rapidrake(txt = "some text that has great keywords")
+\dontrun{
+rakelist <- rapidrake(txt = "some text that has great keywords")
+slowraker::rbind_rakelist(rakelist)
+}
 }
